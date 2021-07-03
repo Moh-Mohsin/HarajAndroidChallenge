@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/postListFragment">
+
+    <fragment
+        android:id="@+id/postListFragment"
+        android:name="com.example.harajtask.ui.postlist.PostsListFragment"
+        android:label=""
+        tools:layout="@layout/post_list_fragment" >
+        <action
+            android:id="@+id/toPostDetailFragment"
+            app:destination="@id/postDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/postDetailFragment"
+        android:name="com.example.harajtask.ui.postdetail.PostDetailFragment"
+        android:label=""
+        tools:layout="@layout/post_detail_fragment" >
+        <argument android:name="post"
+            app:argType="com.example.harajtask.data.model.Post" />
+    </fragment>
+</navigation>

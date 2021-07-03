@@ -3,4 +3,8 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="green">#169834</color>
+    <color name="dark_grey">#6B6B6C</color>
+    <color name="card_background">#F7F9FE</color>
+    <color name="icon_color">#6B6B6C</color>
 </resources>
