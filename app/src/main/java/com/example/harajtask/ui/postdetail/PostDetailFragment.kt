@@ -6,6 +6,7 @@ import android.view.MenuInflater
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import coil.api.load
 import com.example.harajtask.R
 import com.example.harajtask.databinding.PostDetailFragmentBinding
 import com.example.harajtask.databinding.PostListFragmentBinding
@@ -22,6 +23,7 @@ class PostDetailFragment : Fragment(R.layout.post_detail_fragment) {
 
         setHasOptionsMenu(true)
 
+        binding.imageView.load(post.thumbURL)
         binding.title.text = post.title
         binding.date.text = post.date.format()
         binding.username.text = post.username
