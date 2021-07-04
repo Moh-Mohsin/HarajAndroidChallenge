@@ -22,7 +22,9 @@ import timber.log.Timber
 class PostsListFragment : Fragment(R.layout.post_list_fragment), SearchView.OnQueryTextListener {
 
     private val binding by viewBinding(PostListFragmentBinding::bind)
-    private val viewModel by lazy { ViewModelProvider(requireActivity()).get(PostListViewModel::class.java) }
+    private val viewModel by lazy { ViewModelProvider(this).get(PostListViewModel::class.java) }
+
+    private var savedSearch: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +37,11 @@ class PostsListFragment : Fragment(R.layout.post_list_fragment), SearchView.OnQu
 
         setHasOptionsMenu(true)
         postponeEnterTransition()
+
+        if (savedInstanceState != null){
+            savedSearch = savedInstanceState.getString(SEARCH_VIEW_KEY)
+        }
+
         val adapter = PostsAdapter { post, imageView, imageTransitionName->
             val direction = PostsListFragmentDirections.toPostDetailFragment(post)
             val extras = FragmentNavigatorExtras(imageView to imageTransitionName)
@@ -82,8 +89,13 @@ class PostsListFragment : Fragment(R.layout.post_list_fragment), SearchView.OnQu
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
         searchView.queryHint = getString(R.string.search)
+
+        savedSearch?.let { query ->
+            searchItem.expandActionView()
+            searchView.setQuery(query, true)
+            searchView.clearFocus()
+        }
         searchView.setOnQueryTextListener(this)
-//        searchView.isIconified = false
 
         super.onCreateOptionsMenu(menu, inflater)
     }
@@ -96,6 +108,15 @@ class PostsListFragment : Fragment(R.layout.post_list_fragment), SearchView.OnQu
     override fun onQueryTextChange(newText: String): Boolean {
         viewModel.setSearchQuery(newText)
         return true
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putString(SEARCH_VIEW_KEY, viewModel.searchQuery.value)
+        super.onSaveInstanceState(outState)
+    }
+
+    companion object {
+        const val SEARCH_VIEW_KEY = "SEARCH_VIEW_KEY"
     }
 
 }

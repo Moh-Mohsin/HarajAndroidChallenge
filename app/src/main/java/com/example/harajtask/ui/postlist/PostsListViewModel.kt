@@ -24,6 +24,7 @@ class PostListViewModel(app: Application) : AndroidViewModel(app), KodeinAware {
 
     private val _posts: MutableLiveData<List<Post>> = MutableLiveData()
     private val _searchQuery: MutableLiveData<String> = MutableLiveData("")
+    val searchQuery: LiveData<String> = _searchQuery
 
     private val _filteredPosts: MediatorLiveData<List<Post>> = MediatorLiveData<List<Post>>()
 
