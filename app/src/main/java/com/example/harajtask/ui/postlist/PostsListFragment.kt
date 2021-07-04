@@ -1,7 +1,9 @@
 package com.example.harajtask.ui.postlist
 
 import android.os.Bundle
-import android.view.*
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
@@ -14,10 +16,7 @@ import com.example.harajtask.data.get
 import com.example.harajtask.databinding.PostListFragmentBinding
 import com.example.harajtask.util.hide
 import com.example.harajtask.util.show
-import com.example.harajtask.util.toast
 import com.example.harajtask.util.viewBinding
-import org.kodein.di.Kodein
-import org.kodein.di.android.x.kodein
 import timber.log.Timber
 
 class PostsListFragment : Fragment(R.layout.post_list_fragment), SearchView.OnQueryTextListener {
