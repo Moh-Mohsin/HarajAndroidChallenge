@@ -64,5 +64,5 @@ class PostsAdapter(val onPostClicked: (Post) -> Unit) : ListAdapter<Post, Recycl
     }
 }
 
-fun Date.format(pattern: String = "yyyy/MM/dd HH:mm") =
+fun Date.format(pattern: String = "yyyy/MM/dd h:mm a") =
     SimpleDateFormat(pattern, Locale.US).format(this)
