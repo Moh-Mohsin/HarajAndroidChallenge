@@ -3,9 +3,12 @@ package com.example.harajtask.ui.postlist
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
+import androidx.transition.TransitionInflater
 import com.example.harajtask.R
 import com.example.harajtask.data.get
 import com.example.harajtask.databinding.PostListFragmentBinding
@@ -22,16 +25,26 @@ class PostsListFragment : Fragment(R.layout.post_list_fragment), SearchView.OnQu
     private val binding by viewBinding(PostListFragmentBinding::bind)
     private val viewModel by lazy { ViewModelProvider(requireActivity()).get(PostListViewModel::class.java) }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        sharedElementEnterTransition =
+            TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setHasOptionsMenu(true)
-
-        val adapter = PostsAdapter {
-            val direction = PostsListFragmentDirections.toPostDetailFragment(it)
-            findNavController().navigate(direction)
+        postponeEnterTransition()
+        val adapter = PostsAdapter { post, imageView, imageTransitionName->
+            val direction = PostsListFragmentDirections.toPostDetailFragment(post)
+            val extras = FragmentNavigatorExtras(imageView to imageTransitionName)
+            findNavController().navigate(direction, extras)
         }
         binding.postList.adapter = adapter
+        binding.postList.doOnPreDraw {
+            startPostponedEnterTransition()
+        }
 
         binding.retry.setOnClickListener {
             viewModel.getPosts()

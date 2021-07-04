@@ -27,9 +27,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:textDirection="locale"
             android:textColor="@color/green"
-            android:textSize="18sp"
+            android:textDirection="locale"
+            android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -85,7 +85,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.4" />
+            app:layout_constraintGuide_begin="300dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline3"

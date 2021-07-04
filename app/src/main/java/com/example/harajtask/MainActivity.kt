@@ -24,4 +24,7 @@ class MainActivity : AppCompatActivity() {
     private fun buildAppBarConfiguration(): AppBarConfiguration {
         return AppBarConfiguration.Builder(hashSetOf(R.id.postListFragment)).build()
     }
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
 }

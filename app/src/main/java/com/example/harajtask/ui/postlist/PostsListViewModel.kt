@@ -48,7 +48,7 @@ class PostListViewModel(app: Application) : AndroidViewModel(app), KodeinAware {
         viewModelScope.launch {
             _state.value = State.Loading
             //simulate loading
-            delay(5000)
+            delay(2000)
             val result = getPostsUseCase()
             _state.value = when (result) {
                 is Result.Error -> {

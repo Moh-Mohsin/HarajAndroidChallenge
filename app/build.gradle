@@ -62,7 +62,7 @@ dependencies {
     implementation 'org.kodein.di:kodein-di-framework-android-x:6.4.1'
 
     // image
-    implementation "io.coil-kt:coil:0.9.5"
+    implementation "io.coil-kt:coil:1.2.2"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     testImplementation 'junit:junit:4.12'

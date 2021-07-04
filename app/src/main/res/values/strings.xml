@@ -3,4 +3,5 @@
     <string name="search">Search</string>
     <string name="retry">Retry</string>
     <string name="share">Share</string>
+    <string name="post_image_transition">post_image_%s</string>
 </resources>
